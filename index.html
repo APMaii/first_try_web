@@ -1,82 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to the New World</title>
-    <style>
-        /* CSS Styles */
-        body, html {
-            margin: 0; /* Remove default margin */
-            padding: 0; /* Remove default padding */
-            font-family: Arial, sans-serif; /* Set font family */
-            overflow-x: hidden; /* Prevent horizontal scrolling */
-            background-color: #f0f0f0; /* Light grey background */
-        }
-        #welcome {
-            height: 100vh; /* Full viewport height */
-            display: flex; /* Use flexbox for centering */
-            align-items: center; /* Center vertically */
-            justify-content: center; /* Center horizontally */
-            color: blue; /* Blue text color */
-            font-size: 2.5em; /* Large text */
-            text-align: center; /* Center text */
-        }
-        #zeus {
-            display: none; /* Initially hidden */
-            width: 300px; /* Set image width */
-            margin: 20px auto; /* Center the image */
-        }
-        #products {
-            display: none; /* Initially hidden */
-            height: 100vh; /* Full viewport height */
-            display: flex; /* Use flexbox for centering */
-            align-items: center; /* Center vertically */
-            justify-content: center; /* Center horizontally */
-            color: blue; /* Blue text color */
-            font-size: 2.5em; /* Large text */
-            text-align: center; /* Center text */
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Website</title>
+  <style>
+    /* CSS styles */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #1E90FF, #87CEEB);
+    }
+    
+    header {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      text-align: center;
+    }
+    
+    h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+    
+    .content {
+      padding: 40px;
+    }
+    
+    .box {
+      background-color: #000;
+      color: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
 <body>
-
-    <!-- Welcome message -->
-    <div id="welcome">
-        Welcome to the New World of Business
+  <header>
+    <h1>WELCOME TO THE NEW WORLD OF BUSINESS</h1>
+  </header>
+  
+  <div class="content">
+    <div class="box">
+      <h2>From Plutus</h2>
+      <p>[Placeholder for image of Zeus]</p>
     </div>
-
-    <!-- Zeus Image -->
-    <img id="zeus" src="zeus.png" alt="Zeus">
-
-    <!-- Products message -->
-    <div id="products">
-        This is Our Products
+    
+    <div class="box">
+      <h2>Solutions</h2>
+      <p>We have some solutions for you.</p>
+      
+      <div class="box">
+        <h3>Solution 1</h3>
+        <p>[Placeholder for solution 1]</p>
+      </div>
+      
+      <div class="box">
+        <h3>Solution 2</h3>
+        <p>[Placeholder for solution 2]</p>
+      </div>
+      
+      <div class="box">
+        <h3>Solution 3</h3>
+        <p>[Placeholder for solution 3]</p>
+      </div>
+      
+      <div class="box">
+        <h3>Solution 4</h3>
+        <p>[Placeholder for solution 4]</p>
+      </div>
     </div>
-
-    <script>
-        // JavaScript Functionality
-        let scrollCounter = 0; // Initialize scroll counter
-
-        // Event listener for scroll events
-        window.addEventListener('scroll', function() {
-            const zeusImage = document.getElementById('zeus'); // Get Zeus image element
-            const productsMessage = document.getElementById('products'); // Get products message element
-            scrollCounter += 1; // Increment scroll counter on scroll
-
-            // First scroll: show Zeus and change text
-            if (scrollCounter === 1) {
-                document.getElementById('welcome').style.display = 'none'; // Hide welcome message
-                zeusImage.style.display = 'block'; // Show Zeus image
-                zeusImage.insertAdjacentHTML('afterend', "<div style='text-align:center; font-size: 2em; color: blue;'>From Plutus</div>"); // Add text below image
-            }
-
-            // Second scroll: show products message
-            if (scrollCounter === 2) {
-                zeusImage.style.display = 'none'; // Hide Zeus image
-                productsMessage.style.display = 'flex'; // Show products message
-            }
-        });
-    </script>
+  </div>
+  
+  <script>
+    // Add any additional JavaScript functionality here
+  </script>
 </body>
 </html>
