@@ -73,7 +73,6 @@
             width: 50,
             height: 50,
             speed: 5,
-            color: 'red',  // Changed to red
         };
 
         // Control movement
@@ -100,6 +99,20 @@
         document.getElementById('right').addEventListener('mousedown', () => keys['ArrowRight'] = true);
         document.getElementById('right').addEventListener('mouseup', () => keys['ArrowRight'] = false);
 
+        // Draw player with a 3D-like effect
+        function drawPlayer() {
+            const gradient = ctx.createLinearGradient(player.x, player.y, player.x + player.width, player.y + player.height);
+            gradient.addColorStop(0, 'rgba(255, 0, 0, 1)'); // Bright red
+            gradient.addColorStop(1, 'rgba(150, 0, 0, 1)'); // Darker red
+            
+            ctx.fillStyle = gradient;
+            ctx.fillRect(player.x, player.y, player.width, player.height);
+            
+            // Draw shadow
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+            ctx.fillRect(player.x + 5, player.y + 5, player.width, player.height);
+        }
+
         // Game loop
         function gameLoop() {
             // Clear the canvas
@@ -111,9 +124,8 @@
             if (keys['ArrowLeft'] && player.x > 0) player.x -= player.speed;
             if (keys['ArrowRight'] && player.x < canvas.width - player.width) player.x += player.speed;
 
-            // Draw player
-            ctx.fillStyle = player.color;
-            ctx.fillRect(player.x, player.y, player.width, player.height);
+            // Draw player with 3D-like effect
+            drawPlayer();
 
             requestAnimationFrame(gameLoop);
         }
@@ -122,3 +134,4 @@
     </script>
 </body>
 </html>
+
