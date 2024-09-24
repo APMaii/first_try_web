@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Telegram Game</title>
+    <title>3D-Like Box Movement Game</title>
     <style>
         body, html {
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-color: black;
+            background-color: grey; /* Grey background */
         }
         canvas {
             display: block;
             margin: 0 auto;
-            background-color: black;
+            background-color: grey; /* Grey background */
         }
         #controls {
             position: fixed;
@@ -70,23 +70,15 @@
         const player = {
             x: canvas.width / 2 - 25,
             y: canvas.height / 2 - 25,
-            width: 50,
-            height: 50,
+            size: 50,
             speed: 5,
+            color: 'red',
         };
 
         // Control movement
         let keys = {};
 
-        window.addEventListener('keydown', function(e) {
-            keys[e.key] = true;
-        });
-
-        window.addEventListener('keyup', function(e) {
-            keys[e.key] = false;
-        });
-
-        // Button controls
+        // Control movement with buttons
         document.getElementById('up').addEventListener('mousedown', () => keys['ArrowUp'] = true);
         document.getElementById('up').addEventListener('mouseup', () => keys['ArrowUp'] = false);
 
@@ -99,20 +91,6 @@
         document.getElementById('right').addEventListener('mousedown', () => keys['ArrowRight'] = true);
         document.getElementById('right').addEventListener('mouseup', () => keys['ArrowRight'] = false);
 
-        // Draw player with a 3D-like effect
-        function drawPlayer() {
-            const gradient = ctx.createLinearGradient(player.x, player.y, player.x + player.width, player.y + player.height);
-            gradient.addColorStop(0, 'rgba(255, 0, 0, 1)'); // Bright red
-            gradient.addColorStop(1, 'rgba(150, 0, 0, 1)'); // Darker red
-            
-            ctx.fillStyle = gradient;
-            ctx.fillRect(player.x, player.y, player.width, player.height);
-            
-            // Draw shadow
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
-            ctx.fillRect(player.x + 5, player.y + 5, player.width, player.height);
-        }
-
         // Game loop
         function gameLoop() {
             // Clear the canvas
@@ -120,18 +98,50 @@
 
             // Move player
             if (keys['ArrowUp'] && player.y > 0) player.y -= player.speed;
-            if (keys['ArrowDown'] && player.y < canvas.height - player.height) player.y += player.speed;
+            if (keys['ArrowDown'] && player.y < canvas.height - player.size) player.y += player.speed;
             if (keys['ArrowLeft'] && player.x > 0) player.x -= player.speed;
-            if (keys['ArrowRight'] && player.x < canvas.width - player.width) player.x += player.speed;
+            if (keys['ArrowRight'] && player.x < canvas.width - player.size) player.x += player.speed;
 
-            // Draw player with 3D-like effect
-            drawPlayer();
+            // Draw 3D-like player
+            draw3DBox(player.x, player.y, player.size);
 
             requestAnimationFrame(gameLoop);
+        }
+
+        function draw3DBox(x, y, size) {
+            const gradient = ctx.createLinearGradient(x, y, x + size, y + size);
+            gradient.addColorStop(0, 'red');
+            gradient.addColorStop(1, 'darkred');
+
+            ctx.fillStyle = gradient;
+
+            // Draw the box
+            ctx.beginPath();
+            ctx.moveTo(x, y + size);
+            ctx.lineTo(x + size / 2, y);
+            ctx.lineTo(x + size, y + size);
+            ctx.closePath();
+            ctx.fill();
+
+            // Draw the sides
+            ctx.fillStyle = 'darkred';
+            ctx.beginPath();
+            ctx.moveTo(x, y + size);
+            ctx.lineTo(x + size / 2, y + size * 1.5);
+            ctx.lineTo(x + size, y + size);
+            ctx.closePath();
+            ctx.fill();
+
+            ctx.fillStyle = 'lightcoral';
+            ctx.beginPath();
+            ctx.moveTo(x + size, y);
+            ctx.lineTo(x + size / 2, y + size * 0.5);
+            ctx.lineTo(x + size / 2, y + size);
+            ctx.closePath();
+            ctx.fill();
         }
 
         gameLoop();
     </script>
 </body>
 </html>
-
