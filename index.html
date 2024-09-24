@@ -3,145 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D-Like Box Movement Game</title>
+    <title>Your Amazing Website</title>
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
+        body {
+            background-color: #f0f0f0; /* Light grey background */
+            font-family: Arial, sans-serif;
+            text-align: center;
             overflow: hidden;
-            background-color: grey; /* Grey background */
         }
-        canvas {
-            display: block;
-            margin: 0 auto;
-            background-color: grey; /* Grey background */
+        #zeus {
+            display: none; /* Initially hidden */
+            width: 300px; /* Adjust size as needed */
+            margin: 20px auto;
         }
-        #controls {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .row {
-            display: flex;
-            justify-content: center;
-        }
-        button {
-            width: 50px;
-            height: 50px;
-            margin: 5px;
-            font-size: 20px;
-            background-color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:active {
-            background-color: grey;
+        #welcome {
+            margin-top: 20%;
+            font-size: 2em;
+            color: #0000FF; /* Blue color */
         }
     </style>
 </head>
 <body>
-    <canvas id="gameCanvas"></canvas>
-
-    <!-- Directional Buttons -->
-    <div id="controls">
-        <div class="row">
-            <button id="up">⬆</button>
-        </div>
-        <div class="row">
-            <button id="left">⬅</button>
-            <button id="down">⬇</button>
-            <button id="right">➡</button>
-        </div>
-    </div>
+    <div id="welcome">Very sexy blue color with artificial neural networks. New World is here!</div>
+    <img id="zeus" src="zeus.png" alt="Zeus" />
 
     <script>
-        const canvas = document.getElementById('gameCanvas');
-        const ctx = canvas.getContext('2d');
-
-        // Set canvas size to full window
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        // Player properties
-        const player = {
-            x: canvas.width / 2 - 25,
-            y: canvas.height / 2 - 25,
-            size: 50,
-            speed: 5,
-            color: 'red',
-        };
-
-        // Control movement
-        let keys = {};
-
-        // Control movement with buttons
-        document.getElementById('up').addEventListener('mousedown', () => keys['ArrowUp'] = true);
-        document.getElementById('up').addEventListener('mouseup', () => keys['ArrowUp'] = false);
-
-        document.getElementById('down').addEventListener('mousedown', () => keys['ArrowDown'] = true);
-        document.getElementById('down').addEventListener('mouseup', () => keys['ArrowDown'] = false);
-
-        document.getElementById('left').addEventListener('mousedown', () => keys['ArrowLeft'] = true);
-        document.getElementById('left').addEventListener('mouseup', () => keys['ArrowLeft'] = false);
-
-        document.getElementById('right').addEventListener('mousedown', () => keys['ArrowRight'] = true);
-        document.getElementById('right').addEventListener('mouseup', () => keys['ArrowRight'] = false);
-
-        // Game loop
-        function gameLoop() {
-            // Clear the canvas
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // Move player
-            if (keys['ArrowUp'] && player.y > 0) player.y -= player.speed;
-            if (keys['ArrowDown'] && player.y < canvas.height - player.size) player.y += player.speed;
-            if (keys['ArrowLeft'] && player.x > 0) player.x -= player.speed;
-            if (keys['ArrowRight'] && player.x < canvas.width - player.size) player.x += player.speed;
-
-            // Draw 3D-like player
-            draw3DBox(player.x, player.y, player.size);
-
-            requestAnimationFrame(gameLoop);
-        }
-
-        function draw3DBox(x, y, size) {
-            const gradient = ctx.createLinearGradient(x, y, x + size, y + size);
-            gradient.addColorStop(0, 'red');
-            gradient.addColorStop(1, 'darkred');
-
-            ctx.fillStyle = gradient;
-
-            // Draw the box
-            ctx.beginPath();
-            ctx.moveTo(x, y + size);
-            ctx.lineTo(x + size / 2, y);
-            ctx.lineTo(x + size, y + size);
-            ctx.closePath();
-            ctx.fill();
-
-            // Draw the sides
-            ctx.fillStyle = 'darkred';
-            ctx.beginPath();
-            ctx.moveTo(x, y + size);
-            ctx.lineTo(x + size / 2, y + size * 1.5);
-            ctx.lineTo(x + size, y + size);
-            ctx.closePath();
-            ctx.fill();
-
-            ctx.fillStyle = 'lightcoral';
-            ctx.beginPath();
-            ctx.moveTo(x + size, y);
-            ctx.lineTo(x + size / 2, y + size * 0.5);
-            ctx.lineTo(x + size / 2, y + size);
-            ctx.closePath();
-            ctx.fill();
-        }
-
-        gameLoop();
+        window.addEventListener('scroll', function() {
+            const zeusImage = document.getElementById('zeus');
+            if (window.scrollY > 100) { // Change this value based on when you want the image to appear
+                zeusImage.style.display = 'block'; // Show the image
+                document.getElementById('welcome').innerHTML = 'We Are Here!'; // Update text
+            }
+        });
     </script>
 </body>
 </html>
