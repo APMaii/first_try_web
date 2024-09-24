@@ -5,21 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to the New World</title>
     <style>
+        /* CSS Styles */
         body, html {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            font-family: Arial, sans-serif; /* Set font family */
+            overflow-x: hidden; /* Prevent horizontal scrolling */
             background-color: #f0f0f0; /* Light grey background */
         }
         #welcome {
             height: 100vh; /* Full viewport height */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: blue; /* Blue text */
-            font-size: 2.5em;
-            text-align: center;
+            display: flex; /* Use flexbox for centering */
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+            color: blue; /* Blue text color */
+            font-size: 2.5em; /* Large text */
+            text-align: center; /* Center text */
         }
         #zeus {
             display: none; /* Initially hidden */
@@ -29,12 +30,12 @@
         #products {
             display: none; /* Initially hidden */
             height: 100vh; /* Full viewport height */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: blue; /* Blue text */
-            font-size: 2.5em;
-            text-align: center;
+            display: flex; /* Use flexbox for centering */
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+            color: blue; /* Blue text color */
+            font-size: 2.5em; /* Large text */
+            text-align: center; /* Center text */
         }
     </style>
 </head>
@@ -54,18 +55,20 @@
     </div>
 
     <script>
-        let scrollCounter = 0;
+        // JavaScript Functionality
+        let scrollCounter = 0; // Initialize scroll counter
 
+        // Event listener for scroll events
         window.addEventListener('scroll', function() {
-            const zeusImage = document.getElementById('zeus');
-            const productsMessage = document.getElementById('products');
+            const zeusImage = document.getElementById('zeus'); // Get Zeus image element
+            const productsMessage = document.getElementById('products'); // Get products message element
             scrollCounter += 1; // Increment scroll counter on scroll
 
             // First scroll: show Zeus and change text
             if (scrollCounter === 1) {
-                document.getElementById('welcome').style.display = 'none';
-                zeusImage.style.display = 'block';
-                zeusImage.insertAdjacentHTML('afterend', "<div style='text-align:center; font-size: 2em; color: blue;'>From Plutus</div>");
+                document.getElementById('welcome').style.display = 'none'; // Hide welcome message
+                zeusImage.style.display = 'block'; // Show Zeus image
+                zeusImage.insertAdjacentHTML('afterend', "<div style='text-align:center; font-size: 2em; color: blue;'>From Plutus</div>"); // Add text below image
             }
 
             // Second scroll: show products message
