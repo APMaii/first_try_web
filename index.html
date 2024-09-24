@@ -9,71 +9,94 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #1E90FF, #87CEEB);
+      background-image: url('bkk.gif'); /* Set GIF as background */
+      background-size: cover; /* Cover the entire background */
+      background-attachment: fixed; /* Fix background while scrolling */
+      color: white; /* Text color */
     }
-    
-    header {
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 20px;
-      text-align: center;
+
+    /* Centered page sections */
+    .section {
+      height: 100vh; /* Full viewport height for each section */
+      display: flex; /* Use flexbox for centering */
+      align-items: center; /* Center vertically */
+      justify-content: center; /* Center horizontally */
+      text-align: center; /* Center text */
+      opacity: 0; /* Initially hidden */
+      transition: opacity 0.5s; /* Smooth fade-in effect */
     }
-    
+
+    .visible {
+      opacity: 1; /* Make visible when scrolled to */
+    }
+
     h1 {
-      font-size: 36px;
-      margin-bottom: 10px;
+      font-size: 36px; /* Main title size */
+      margin: 0; /* Remove margin */
     }
-    
-    .content {
-      padding: 40px;
+
+    .solutions {
+      display: grid; /* Use grid for solutions layout */
+      grid-template-columns: repeat(2, 1fr); /* 2 columns */
+      gap: 20px; /* Space between boxes */
+      max-width: 800px; /* Limit width */
+      margin: 0 auto; /* Center on the page */
     }
-    
+
     .box {
-      background-color: #000;
-      color: #fff;
-      padding: 20px;
-      margin-bottom: 20px;
+      background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+      color: #fff; /* White text color */
+      padding: 20px; /* Inner spacing */
+      border-radius: 10px; /* Rounded corners */
+      text-align: left; /* Align text left */
     }
   </style>
 </head>
 <body>
-  <header>
+
+  <div class="section visible" id="welcome">
     <h1>WELCOME TO THE NEW WORLD OF BUSINESS</h1>
-  </header>
-  
-  <div class="content">
-    <div class="box">
-      <h2>From Plutus</h2>
-      <p>[Placeholder for image of Zeus]</p>
-    </div>
-    
-    <div class="box">
-      <h2>Solutions</h2>
-      <p>We have some solutions for you.</p>
-      
+  </div>
+
+  <div class="section" id="from-plutus">
+    <h1>FROM PLUTUS</h1>
+    <img src="zeus.png" alt="Zeus" style="width: 200px;"> <!-- Placeholder for Zeus image -->
+  </div>
+
+  <div class="section" id="solutions">
+    <h1>WE HAVE THIS SOLUTIONS</h1>
+    <div class="solutions">
       <div class="box">
         <h3>Solution 1</h3>
-        <p>[Placeholder for solution 1]</p>
+        <p>Details about solution 1.</p>
       </div>
-      
       <div class="box">
         <h3>Solution 2</h3>
-        <p>[Placeholder for solution 2]</p>
+        <p>Details about solution 2.</p>
       </div>
-      
       <div class="box">
         <h3>Solution 3</h3>
-        <p>[Placeholder for solution 3]</p>
+        <p>Details about solution 3.</p>
       </div>
-      
       <div class="box">
         <h3>Solution 4</h3>
-        <p>[Placeholder for solution 4]</p>
+        <p>Details about solution 4.</p>
       </div>
     </div>
   </div>
-  
+
   <script>
-    // Add any additional JavaScript functionality here
+    // JavaScript to handle scrolling
+    let sections = document.querySelectorAll('.section'); // Get all sections
+
+    window.addEventListener('scroll', () => {
+      sections.forEach(section => {
+        // Check if section is in viewport
+        if (section.getBoundingClientRect().top < window.innerHeight * 0.8) {
+          section.classList.add('visible'); // Add visible class to show section
+        }
+      });
+    });
   </script>
 </body>
 </html>
