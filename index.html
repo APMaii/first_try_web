@@ -3,36 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Amazing Website</title>
+    <title>Welcome to the New World</title>
     <style>
-        body {
-            background-color: #f0f0f0; /* Light grey background */
+        body, html {
+            margin: 0;
+            padding: 0;
             font-family: Arial, sans-serif;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            background-color: #f0f0f0; /* Light grey background */
+        }
+        #welcome {
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: blue; /* Blue text */
+            font-size: 2.5em;
             text-align: center;
-            overflow: hidden;
         }
         #zeus {
             display: none; /* Initially hidden */
-            width: 300px; /* Adjust size as needed */
-            margin: 20px auto;
+            width: 300px; /* Set image width */
+            margin: 20px auto; /* Center the image */
         }
-        #welcome {
-            margin-top: 20%;
-            font-size: 2em;
-            color: #0000FF; /* Blue color */
+        #products {
+            display: none; /* Initially hidden */
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: blue; /* Blue text */
+            font-size: 2.5em;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <div id="welcome">Very sexy blue color with artificial neural networks. New World is here!</div>
-    <img id="zeus" src="zeus.png" alt="Zeus" />
+
+    <!-- Welcome message -->
+    <div id="welcome">
+        Welcome to the New World of Business
+    </div>
+
+    <!-- Zeus Image -->
+    <img id="zeus" src="zeus.png" alt="Zeus">
+
+    <!-- Products message -->
+    <div id="products">
+        This is Our Products
+    </div>
 
     <script>
+        let scrollCounter = 0;
+
         window.addEventListener('scroll', function() {
             const zeusImage = document.getElementById('zeus');
-            if (window.scrollY > 100) { // Change this value based on when you want the image to appear
-                zeusImage.style.display = 'block'; // Show the image
-                document.getElementById('welcome').innerHTML = 'We Are Here!'; // Update text
+            const productsMessage = document.getElementById('products');
+            scrollCounter += 1; // Increment scroll counter on scroll
+
+            // First scroll: show Zeus and change text
+            if (scrollCounter === 1) {
+                document.getElementById('welcome').style.display = 'none';
+                zeusImage.style.display = 'block';
+                zeusImage.insertAdjacentHTML('afterend', "<div style='text-align:center; font-size: 2em; color: blue;'>From Plutus</div>");
+            }
+
+            // Second scroll: show products message
+            if (scrollCounter === 2) {
+                zeusImage.style.display = 'none'; // Hide Zeus image
+                productsMessage.style.display = 'flex'; // Show products message
             }
         });
     </script>
